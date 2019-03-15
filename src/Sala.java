@@ -3,12 +3,17 @@ public class Sala {
     
    private int cantidadSillas_;
    private int numeroSala_;
-   private LinkedList<Funcion> funcionesDisponibles_ = new LinkedList<Funcion>();
+   public LinkedList<Funcion> funcionesDisponibles_ = new LinkedList<Funcion>();
+   public static ArrayList<Sala> listaSala = new ArrayList<>();
 
-    public Sala(int cantidadSillas, int numeroSala, LinkedList<Funcion> funciones) {
+    private Sala(int cantidadSillas, int numeroSala) {
         this.cantidadSillas_ = cantidadSillas;
         this.numeroSala_ = numeroSala;
-        this.funcionesDisponibles_ = funciones;
+        Sala.listaSala.add(this);
+    }
+    public static void crearSala(int cantidadSillas, int numeroSala){
+        new Sala(cantidadSillas,numeroSala);
+        
     }
 
     public int getCantidadSillas_() {
@@ -23,16 +28,16 @@ public class Sala {
         return funcionesDisponibles_;
     }
 
-    private void setCantidadSillas_(int cantidadSillas_) {
+    public void setCantidadSillas_(int cantidadSillas_) {
         this.cantidadSillas_ = cantidadSillas_;
     }
 
-    private void setNumeroSala_(int numeroSala_) {
+    public void setNumeroSala_(int numeroSala_) {
         this.numeroSala_ = numeroSala_;
     }
 
-    private void setFuncionesDisponibles_(LinkedList<Funcion> funcionesDisponibles_) {
-        this.funcionesDisponibles_ = funcionesDisponibles_;
+    public void añadirFuncion(Funcion funcion) {
+        this.funcionesDisponibles_.add(funcion);
     }
    
    

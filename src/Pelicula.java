@@ -7,22 +7,22 @@ public class Pelicula {
     private String nombre_;
     private String genero_;
     private int edad_;
-    private float puntuacion_;
+    private double puntuacion_;
     private ArrayList <Funcion> listaFunciones_ = new ArrayList<>();
+    public static ArrayList <Pelicula> listaPeliculas = new ArrayList<>();
+
     
     //si se debe crear con puntuacion o se le coloca despues ?
-    public Pelicula(String nombre, String genero, int edad, float puntuacion,
-                    ArrayList<Funcion> listaFunciones){
+    public Pelicula(String nombre, String genero, int edad, double puntuacion){
         this.nombre_ = nombre;
         this.genero_ = genero;
         this.edad_ = edad;
         this.puntuacion_ = puntuacion;
-        this.listaFunciones_ = listaFunciones;
+        Pelicula.listaPeliculas.add(this);
     }
     
-    public static void crearPelicula(String nombre, String genero, int edad, float puntuacion,
-                    ArrayList<Funcion> listaFunciones){
-        new Pelicula(nombre,genero,edad,puntuacion,listaFuncones);    
+    public static void crearPelicula(String nombre, String genero, int edad, double puntuacion){
+        new Pelicula(nombre,genero,edad,puntuacion);    
     }
     
     public void borrarPelicula(Pelicula pelicula){
@@ -53,7 +53,7 @@ public class Pelicula {
         this.edad_ = edad;
     }
     
-    public Float getPuntuacion(){
+    public double getPuntuacion(){
         return this.puntuacion_;
     }
     
@@ -63,6 +63,9 @@ public class Pelicula {
     
     public ArrayList<Funcion> getFunciones(){
         return this.listaFunciones_;
+    }
+    public void añadirFuncion(Funcion funcion) {
+        this.listaFunciones_.add(funcion);
     }
 }
 
