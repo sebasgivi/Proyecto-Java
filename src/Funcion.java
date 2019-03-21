@@ -5,7 +5,7 @@ public class Funcion {
     private Sala sala_;
     private String horaDeFuncion_; 
     
-    private Funcion(Pelicula pelicula, Sala sala, String horaDeFuncion){
+    public Funcion(Pelicula pelicula, Sala sala, String horaDeFuncion){
         this.pelicula_ = pelicula;
         this.sala_ = sala;
         this.horaDeFuncion_ = horaDeFuncion;
@@ -13,10 +13,6 @@ public class Funcion {
         sala.añadirFuncion(this);
         pelicula.añadirFuncion(this);
     }   
-    
-    public static void crearFuncion(Pelicula pelicula, Sala sala, String horaDeFuncion){        
-        new Funcion(pelicula,sala,horaDeFuncion);
-    }
     
     public static ArrayList<Funcion> getfunciones_(){
         return funciones_;

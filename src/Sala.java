@@ -6,16 +6,12 @@ public class Sala {
    public LinkedList<Funcion> funcionesDisponibles_ = new LinkedList<Funcion>();
    public static ArrayList<Sala> listaSala = new ArrayList<>();
 
-    private Sala(int cantidadSillas, int numeroSala) {
+    public Sala(int cantidadSillas, int numeroSala) {
         this.cantidadSillas_ = cantidadSillas;
         this.numeroSala_ = numeroSala;
         Sala.listaSala.add(this);
     }
-    public static void crearSala(int cantidadSillas, int numeroSala){
-        new Sala(cantidadSillas,numeroSala);
-        
-    }
-
+    
     public int getCantidadSillas_() {
         return cantidadSillas_;
     }

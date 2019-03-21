@@ -20,11 +20,7 @@ public class Pelicula {
         this.puntuacion_ = puntuacion;
         Pelicula.listaPeliculas.add(this);
     }
-    
-    public static void crearPelicula(String nombre, String genero, int edad, double puntuacion){
-        new Pelicula(nombre,genero,edad,puntuacion);    
-    }
-    
+ 
     public void borrarPelicula(Pelicula pelicula){
         pelicula = null;
         }
