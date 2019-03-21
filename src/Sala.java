@@ -24,14 +24,6 @@ public class Sala {
         return funcionesDisponibles_;
     }
 
-    public void setCantidadSillas_(int cantidadSillas_) {
-        this.cantidadSillas_ = cantidadSillas_;
-    }
-
-    public void setNumeroSala_(int numeroSala_) {
-        this.numeroSala_ = numeroSala_;
-    }
-
     public void añadirFuncion(Funcion funcion) {
         this.funcionesDisponibles_.add(funcion);
     }
