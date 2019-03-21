@@ -1,13 +1,15 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
-/**
- *
- * @author idea 320
- */
 public class Tiquete {
+    public Funcion funcion;
+    public Factura factura;
+    public int silla;
+    public String ID;
+
+    public Tiquete(Funcion funcion, int silla, String ID) {
+        this.funcion = funcion;
+        this.silla = silla;
+        this.ID = ID;
+    }
+    
     
 }

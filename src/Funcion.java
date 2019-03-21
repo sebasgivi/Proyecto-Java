@@ -4,6 +4,7 @@ public class Funcion {
     private Pelicula pelicula_;
     private Sala sala_;
     private String horaDeFuncion_; 
+    private Tiquete[] listaTiquetes;
     
     public Funcion(Pelicula pelicula, Sala sala, String horaDeFuncion){
         this.pelicula_ = pelicula;
@@ -12,6 +13,7 @@ public class Funcion {
         Funcion.funciones_.add(this);
         sala.añadirFuncion(this);
         pelicula.añadirFuncion(this);
+        crearTiquetes(sala.getCantidadSillas_());
     }   
     
     public static ArrayList<Funcion> getfunciones_(){
@@ -27,5 +29,11 @@ public class Funcion {
         return super.toString(); //To change body of generated methods, choose Tools | Templates.
     }
     
+    private void crearTiquetes(int cantidad){
+        this.listaTiquetes = new Tiquete[cantidad];
+        for (int i = 0; i < cantidad; i++) {
+            this.listaTiquetes[i] = new Tiquete(this, i + 1, "unico");
+        }
+    }
     
 }
