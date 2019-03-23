@@ -9,6 +9,7 @@ public class Funcion {
     private String horaDeFuncion_;
     private Tiquete[] listaTiquetes;
     private String formato_;
+    private LinkedList<Integer> sillasDisponibles_ = new LinkedList<Integer>();
 
     public Funcion(Pelicula pelicula, Sala sala, String horaDeFuncion, String formato) {
         this.pelicula_ = pelicula;
@@ -44,6 +45,13 @@ public class Funcion {
                 this.listaTiquetes[i] = new Tiquete(this, i + 1,6000);
             }
         }
+        for (int i = 0; i < this.sala_.getCantidadSillas_(); i++) {
+            this.sillasDisponibles_.add(i+1);
+        }
+    }
+
+    public LinkedList<Integer> getSillasDisponibles_() {
+        return sillasDisponibles_;
     }
 
     public String getFormato_() {

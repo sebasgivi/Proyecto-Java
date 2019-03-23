@@ -7,14 +7,14 @@ public class Pelicula {
     private String nombre_;
     private String genero_;
     private int edad_;
+    private String sinopsis_;
     private double puntuacion_;
     private ArrayList <Funcion> listaFunciones_ = new ArrayList<>();
     public static ArrayList <Pelicula> listaPeliculas = new ArrayList<>();
 
-    
-    //si se debe crear con puntuacion o se le coloca despues ?
-    public Pelicula(String nombre, String genero, int edad, double puntuacion){
+        public Pelicula(String nombre, String genero, int edad, double puntuacion){
         this.nombre_ = nombre;
+        this.sinopsis_ = "";
         this.genero_ = genero;
         this.edad_ = edad;
         this.puntuacion_ = puntuacion;
@@ -63,5 +63,14 @@ public class Pelicula {
     public void añadirFuncion(Funcion funcion) {
         this.listaFunciones_.add(funcion);
     }
+
+    public String getSinopsis_() {
+        return sinopsis_;
+    }
+
+    public void setSinopsis_(String sinopsis_) {
+        this.sinopsis_ = sinopsis_;
+    }
+    
 }
 
