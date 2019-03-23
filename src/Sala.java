@@ -28,5 +28,12 @@ public class Sala {
         this.funcionesDisponibles_.add(funcion);
     }
    
-   
+   public Pelicula buscarPelicula(String nombre){
+       for(Pelicula pelicula : Pelicula.listaPeliculas){
+           if(pelicula.getNombre().equals(nombre)){
+               return pelicula;
+           }
+       }
+       return null;
+   }
 }
