@@ -45,9 +45,9 @@ public class Funcion {
         return super.toString(); //To change body of generated methods, choose Tools | Templates.
     }
 
-    private void crearTiquetes(int cantidad) {
-        this.listaTiquetes = new Tiquete[cantidad];
-        for (int i = 0; i < cantidad; i++) {
+    private void crearTiquetes(int sillas) {
+        this.listaTiquetes = new Tiquete[sillas];
+        for (int i = 0; i < sillas; i++) {
             if (this.formato_.equals("2D")) {
                 this.listaTiquetes[i] = new Tiquete(this, i + 1,4000);
             }
@@ -60,7 +60,7 @@ public class Funcion {
         }
     }
 
-    public LinkedList<Integer> getSillasDisponibles_() {
+    public LinkedList<Integer> getSillasDisponibles() {
         return sillasDisponibles_;
     }
 

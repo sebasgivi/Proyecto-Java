@@ -24,6 +24,7 @@
                 <td>${pro.getSala().getNumeroSala()}</td>
                 <td>${pro.getHoraDeFuncion()}</td>
                 <td>${pro.getFormato()}</td>
+                <td>${pro.getSillasDisponibles()}</td>
             </tr>
         </c:forEach>
     </table>

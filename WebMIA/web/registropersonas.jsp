@@ -10,7 +10,7 @@
     clave: <input type="password" name="clave" required/><br /><br />
     <input type="submit" value="Registrar" />
 </form>
-<c:if test="${not empty listaPersonas}">
+<c:if test="${aPersona != null}">
     <table style=" text-align: center">
 
         <tr>
@@ -20,20 +20,15 @@
             <th width="120">Edad</th>
             <th width="120">clave</th>
         </tr>
-        <c:forEach items="${listaPersonas}" var="pro">
-            <c:if test="${pro.getNumeroIdentificacion() != 0}">
+            <c:if test="${aPersona.getNumeroIdentificacion() != 0}">
                 <tr>
-                    <td>${pro.getNombre()}</td>
-                    <td>${pro.getApellido()}</td>
-                    <td>${pro.getNumeroIdentificacion()}</td>
-                    <td>${pro.getEdad()}</td>
-                    <td>${pro.getClave()}</td>
-
+                    <td>${aPersona.getNombre()}</td>
+                    <td>${aPersona.getApellido()}</td>
+                    <td>${aPersona.getNumeroIdentificacion()}</td>
+                    <td>${aPersona.getEdad()}</td>
+                    <td>${aPersona.getClave()}</td>
                 </tr>
             </c:if>
-        </c:forEach>
-
-
     </table>
 
 </c:if>

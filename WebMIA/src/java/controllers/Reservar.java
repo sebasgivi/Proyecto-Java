@@ -16,14 +16,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import models.Persona;
+import models.Funcion;
 
 /**
  *
  * @author juan pablo cano
  */
-@WebServlet(name = "Personas", urlPatterns = {"/Personas"})
-public class Personas extends HttpServlet {
+@WebServlet(name = "Reservar", urlPatterns = {"/Reservar"})
+public class Reservar extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -38,7 +38,6 @@ public class Personas extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-           
         }
     }
 
@@ -54,42 +53,33 @@ public class Personas extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        HttpSession session = request.getSession();       
-        Persona aPersona = new Persona();  
-        if(null != session.getAttribute("aPersona")){
-            aPersona=(Persona)session.getAttribute("aPersona");
+        HttpSession session = request.getSession();
+        List<Integer> sillasDisponibles_ = new ArrayList<Integer>();
+        if (null != session.getAttribute("Funciones")) {
+            sillasDisponibles_ = (ArrayList<Integer>) session.getAttribute("Funciones");
         }
-        request.setAttribute("aPersona", aPersona);   
-        RequestDispatcher view = request.getRequestDispatcher("registropersonas.jsp");
+        request.setAttribute("sillasDisponibles_", sillasDisponibles_);
+        RequestDispatcher view = request.getRequestDispatcher("reservar.jsp");
         view.forward(request, response);
+        
+        
     }
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
+    
+
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        HttpSession session = request.getSession();       
-        Persona aPersona = new Persona();  
-        if(null != session.getAttribute("aPersona")){
-            aPersona=(Persona)session.getAttribute("aPersona");
+        HttpSession session = request.getSession();
+        List<Integer> sillasDisponibles_ = new ArrayList<Integer>();
+        if (null != session.getAttribute("Funciones")) {
+            sillasDisponibles_ = (ArrayList<Integer>) session.getAttribute("Reservar");
         }
-        String nombre = request.getParameter("nombre");
-        String apellido = request.getParameter("apellido");
-        long id = Long.parseLong(request.getParameter("id"));
-        int edad = Integer.parseInt(request.getParameter("edad")); 
-        String clave = request.getParameter("clave");
-        Persona p = new Persona(nombre,apellido,id,edad,clave);
-        aPersona = p;
-        session.setAttribute("aPersona", aPersona);
-        request.setAttribute("aPersona", aPersona);        
-        RequestDispatcher view = request.getRequestDispatcher("registropersonas.jsp");
+        int p = Integer.parseInt(request.getParameter("numSilla"));
+        sillasDisponibles_.remove(p+1);
+        session.setAttribute("Funciones", sillasDisponibles_);
+        request.setAttribute("sillasDisponibles_", sillasDisponibles_);
+        RequestDispatcher view = request.getRequestDispatcher("reservar.jsp");
         view.forward(request, response);
     }
 

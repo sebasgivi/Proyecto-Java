@@ -13,26 +13,17 @@
             <table width="100%">
                 <tr>
                     <td style="width : 80% "><h1>CinemaMelo</h1></td>
-
-                    <c:if test="${empty listaPersonas}">
-                        <td  style=" width: 20% ; text-align: center">
-                            <h4><a href="./Personas"> Log In </a></h4>
-                        </td>
-                    </c:if>
-
-                    <c:forEach items="${listaPersonas}" var="pro">
-                        <c:if test="${pro.getNombre()== null}">
-                            <td>
+                    
+                        <c:if test="${aPersona.getNombre() == null}">
+                            <td  style=" width: 20% ; text-align: center">
                                 <h4><a href="./Personas"> Log In </a></h4>
-                            </td>   
+                            </td>
                         </c:if>
-                        <c:if test="${pro.getNombre()!= null}">
-                            <td>
-                                <h4><a href="./LogIn"> ${pro.getNombre()} </a></h4>
+                        <c:if test="${aPersona.getNombre() != null}">
+                            <td style=" width: 20% ; text-align: center">
+                                <h4><a href="./LogIn"> ${aPersona.getNombre()} </a></h4>
                             </td>
                         </c:if> 
-                    </c:forEach>   
-                </tr>
-            </table>
-
-            <div id="body">
+                    </tr>
+                </table>
+                <div id="body">
