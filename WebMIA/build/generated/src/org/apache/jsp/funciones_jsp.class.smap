@@ -1,0 +1,30 @@
+SMAP
+funciones_jsp.java
+JSP
+*S JSP
+*F
++ 0 header.jsp
+header.jsp
++ 1 funciones.jsp
+funciones.jsp
++ 2 footer.jsp
+footer.jsp
+*L
+1,15:62
+16:77,2
+17,2:79
+21,5:81
+1#1,13:86
+13:130,8
+14,8:138
+21:168,11
+22:179
+23,4:180,3
+27,2:192
+28,3:148
+30:100
+31:218,8
+32,2:226
+33:103
+1#2,9:104
+*E
