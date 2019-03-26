@@ -3,10 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/exito/Documents/NetBeansProjects/WebMIA/web/registropersonas.jsp</file>
-            <file>file:/C:/Users/exito/Documents/NetBeansProjects/WebMIA/web/header.jsp</file>
+            <file>file:/C:/Users/exito/Documents/NetBeansProjects/WebMIA/web/verPelicula.jsp</file>
+            <file>file:/C:/Users/exito/Documents/NetBeansProjects/WebMIA/web/peliculasUsuario.jsp</file>
+            <file>file:/C:/Users/exito/Documents/NetBeansProjects/WebMIA/src/java/controllers/VerPelicula.java</file>
             <file>file:/C:/Users/exito/Documents/NetBeansProjects/WebMIA/src/java/controllers/Home.java</file>
-            <file>file:/C:/Users/exito/Documents/NetBeansProjects/WebMIA/web/home.jsp</file>
         </group>
     </open-files>
 </project-private>

@@ -68,6 +68,10 @@ public class Pelicula {
         this.puntuacion_ = puntuacion;
     }
 
+    public ArrayList<Funcion> getListaFunciones_() {
+        return listaFunciones_;
+    }
+    
     public ArrayList<Funcion> getFunciones() {
         return this.listaFunciones_;
     }

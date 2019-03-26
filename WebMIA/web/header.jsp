@@ -14,7 +14,7 @@
                 <tr>
                     <td style="width : 80% "><h1>CinemaMelo</h1></td>
                     
-                        <c:if test="${aPersona.getNombre() == null}">
+                        <c:if test="${aPersona == null}">
                             <td  style=" width: 20% ; text-align: center">
                                 <h4><a href="./Personas"> Log In </a></h4>
                             </td>

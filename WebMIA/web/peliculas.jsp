@@ -10,7 +10,7 @@
     <input type="submit" value="Guardar" />
 </form>
 
-<c:if test="${not empty pelis}">
+<c:if test="${not empty Pelis}">
     <table style=" text-align: center">
         <tr>
             <th width="120">Name</th>
@@ -18,7 +18,7 @@
             <th width="120">Edad</th>
             <th width="120">Valoracion</th>
         </tr>
-        <c:forEach items="${pelis}" var="pro">
+        <c:forEach items="${Pelis}" var="pro">
             <c:if test="${pro.getNombre() != null}">
                 <tr>
                     <td>${pro.getNombre()}</td>
