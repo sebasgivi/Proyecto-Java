@@ -54,12 +54,7 @@ public class Perfil extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();
-        if (request.getParameter("Usuario") != null) {
-            System.out.println("AQUITOY");
-            Persona Usuario = Persona.buscarPersona(request.getParameter("Usuario"),Persona.getListaPersonas());
-            request.setAttribute("Usuario", Usuario);
-            session.setAttribute("Usuario", Usuario);
-        }
+        request.setAttribute("aPersona", session.getAttribute("aPersona"));
         RequestDispatcher view = request.getRequestDispatcher("perfil.jsp");
         view.forward(request, response);
     }

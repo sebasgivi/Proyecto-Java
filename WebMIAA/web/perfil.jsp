@@ -4,20 +4,13 @@
 
 
 <table style=" text-align: center">
-    <tr><th width="180">Nombre:</th><td>${Usuario.getNombre()}</td></tr>
-    <tr><th width="120">Apellido:</th><td>${Usuario.getApellido()}</td></tr>
-        <th width="120">correo:</th>
-        <th width="120">Edad</th>
-        <th width="120">clave</th>
-        <th width="120">Usuario/Administrador </th>
-    <tr>
-        
-        
-        <td>${aPersona.getCorreo()}</td>
-        <td>${aPersona.getEdad()}</td>
-        <td>${aPersona.getClave()}</td>
-        <td>${aPersona.getTipo_()}</td>
-    </tr>
+    <tr><th width="180">Nombre:</th><td>${aPersona.getNombre()}</td></tr>
+    <tr><th width="120">Apellido:</th><td>${aPersona.getApellido()}</td></tr>
+    <tr><th width="120">correo:</th><td>${aPersona.getCorreo()}</td></tr>
+    <tr><th width="120">Edad</th><td>${aPersona.getEdad()}</td></tr>
+    <tr><th width="120">clave</th><td>${aPersona.getClave()}</td></tr>
+    <tr><th width="120">Usuario/Administrador </th><td>${aPersona.getTipo()}</td></tr>
+
 </table>
-<a href="./PeliculasUsuario">Volver</a>
+<h1><a href="./PeliculasUsuario">Volver</a></h1>
 <%@include file="footer.jsp" %>
