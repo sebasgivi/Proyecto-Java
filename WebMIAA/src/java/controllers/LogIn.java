@@ -66,6 +66,8 @@ public class LogIn extends HttpServlet {
                 }
             }
         }
+        RequestDispatcher view = request.getRequestDispatcher("home.jsp");
+        view.forward(request, response);
 
     }
 
