@@ -1,0 +1,31 @@
+SMAP
+peliculas_jsp.java
+JSP
+*S JSP
+*F
++ 0 header.jsp
+header.jsp
++ 1 peliculas.jsp
+peliculas.jsp
++ 2 footer.jsp
+footer.jsp
+*L
+1,15:62
+16:77,2
+17,2:79
+21,5:81
+1#1,13:86
+13:128,8
+14,8:136
+21:166,11
+22:177
+22:206,8
+23:214
+24,4:215,3
+28,2:227
+29,2:180
+30,3:146
+32:100
+1#2,9:101
+33#1:109
+*E
