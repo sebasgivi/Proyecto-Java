@@ -9,16 +9,14 @@
         <th width="120">Puntuacion</th>
         
     </tr>
-
-    
         <tr>
             <td>${pelicula.getNombre()}</td>
             <td>${pelicula.getPuntuacion()}</td>
             <td>
                 <c:if test="${not empty pelicula.getListaFunciones_()}">
                     <td width="160">Funciones Posibles:</td>
-                    <c:forEach var="p" items="${pelicula.getListaFunciones_()}">
-                    <td><a href="./VerFuncion?funcionDePelicula=${(pelicula.buscarFuncion(pelicula,p.getHoraDeFuncion())).getHoraDeFuncion()}">${p.getHoraDeFuncion()}:00/</a></td>
+                    <c:forEach var="funcionPelicula" items="${pelicula.getFunciones()}">
+                        <td><a href="./VerFuncion?funcionDePelicula=${pelicula.concatenar(pelicula,funcionPelicula.getHoraDeFuncion())}">${funcionPelicula.getHoraDeFuncion()}:00</a></td>
                     </c:forEach>
                 </c:if>
                 <c:if test="${empty pelicula.getListaFunciones_()}">

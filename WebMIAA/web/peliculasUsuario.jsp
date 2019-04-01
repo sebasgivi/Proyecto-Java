@@ -13,9 +13,9 @@
             Pelicula:
         </td>
         </tr>
-    <c:forEach items="${Pelis}" var="pro">
+    <c:forEach items="${Pelis}" var="pelicula">
         <tr>
-            <td><a href="./VerPelicula?pelicula=${pro.getNombre()}">${pro.getNombre()}</a></td>
+            <td><a href="./VerPelicula?pelicula=${pelicula.getNombre()}">${pelicula.getNombre()}</a></td>
         </tr>
     </c:forEach>
 </table>

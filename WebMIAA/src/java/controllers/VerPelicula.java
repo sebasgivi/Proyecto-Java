@@ -47,18 +47,10 @@ public class VerPelicula extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        HttpSession session = request.getSession();
-        ArrayList<Pelicula> Pelis = new ArrayList<>();
-        if (null != session.getAttribute("Pelis")) {
-            Pelis = (ArrayList<Pelicula>) session.getAttribute("Pelis");
-        }
         if(request.getParameter("pelicula") != null){
             Pelicula pelicula = Pelicula.buscarPelicula(request.getParameter("pelicula"));
             request.setAttribute("pelicula", pelicula);
-            session.setAttribute("pelicula", pelicula);
         }
-        request.setAttribute("Pelis", Pelis);
-        session.setAttribute("Pelis", Pelis);
         RequestDispatcher view = request.getRequestDispatcher("verPelicula.jsp");
         view.forward(request, response);
     }

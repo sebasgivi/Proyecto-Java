@@ -54,34 +54,14 @@ public class Personas extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        HttpSession session = request.getSession();
-        Persona aPersona = new Persona();
-        if (null != session.getAttribute("aPersona")) {
-            aPersona = (Persona) session.getAttribute("aPersona");
-        }
-        request.setAttribute("aPersona", aPersona);
-        session.setAttribute("aPersona", aPersona);
+        request.setAttribute("listaRegistros", Persona.getListaPersonas());
         RequestDispatcher view = request.getRequestDispatcher("registropersonas.jsp");
         view.forward(request, response);
     }
 
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
-        HttpSession session = request.getSession();
-        Persona aPersona = new Persona();
-        if (null != session.getAttribute("aPersona")) {
-            aPersona = (Persona) session.getAttribute("aPersona");
-        }
         String nombre = request.getParameter("nombre");
         String apellido = request.getParameter("apellido");
         String correo = request.getParameter("correo");
@@ -89,9 +69,7 @@ public class Personas extends HttpServlet {
         String clave = request.getParameter("clave");
         String AoU = request.getParameter("Admin/Usuario");
         Persona p = new Persona(nombre, apellido, correo, edad, clave, AoU);
-        aPersona = p;
-        session.setAttribute("aPersona", aPersona);
-        request.setAttribute("aPersona", aPersona);
+        request.setAttribute("listaRegistros", Persona.getListaPersonas());
         RequestDispatcher view = request.getRequestDispatcher("registropersonas.jsp");
         view.forward(request, response);
     }

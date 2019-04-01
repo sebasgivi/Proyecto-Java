@@ -5,10 +5,15 @@
     Clave: <input type="password" name="clave" required/><br /><br />
     <input type="submit" value="Ingresar" />
 </form>
-<c:if test="${aPersona != null}">
-    ENTRO EN aPERSONA dif NULL
+<c:if test="${error != null}">
+    <c:set var="var" value="usuario"/>  
+    <c:if test="${error == var}">
+        El Usuario No Existe
+    </c:if>
+    <c:set var="var" value="password"/>  
+    <c:if test="${error == var}">
+        password Incorrecta
+    </c:if>
 </c:if>
-<c:if test="${aPersona == null}">
-    no Existen PErsonas
-</c:if>
+
 <%@include file="footer.jsp" %>

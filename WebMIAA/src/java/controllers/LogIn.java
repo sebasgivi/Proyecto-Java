@@ -41,40 +41,37 @@ public class LogIn extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
-        HttpSession session = request.getSession();
-        if (null != session.getAttribute("aPersona")) {
-            Persona aPersona = new Persona();
-            aPersona = (Persona) session.getAttribute("aPersona");
-            String clave = aPersona.getCorreo();
-            String correo = aPersona.getClave();
-            //LEER EL TXT PARA VER SI CONCUERDA CLAVE CON CORREO
-            if (Persona.buscarPersona(correo, Persona.getListaPersonas()) != null) {
-                if (aPersona.getClave() == clave) {
-                    if (aPersona.getTipo().equals("2")) {
-                        request.setAttribute("aPersona", aPersona);
-                        session.setAttribute("aPersona", aPersona);
-                        RequestDispatcher view = request.getRequestDispatcher("homeAdmin.jsp");
-                        view.forward(request, response);
-                    } else {
-                        request.setAttribute("aPersona", aPersona);
-                        session.setAttribute("aPersona", aPersona);
-                        RequestDispatcher view = request.getRequestDispatcher("home.jsp");
-                        view.forward(request, response);
-                    }
-
-                }
-            }
-        }
-        RequestDispatcher view = request.getRequestDispatcher("home.jsp");
+        RequestDispatcher view = request.getRequestDispatcher("logIn.jsp");
         view.forward(request, response);
-
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        HttpSession session = request.getSession();
+        String correo = request.getParameter("correo");
+        String clave = request.getParameter("clave");
+        Persona usuarioIngresado = Persona.buscarPorCorreo(correo);
+        if(usuarioIngresado != null){
+            if(usuarioIngresado.getClave().equals(clave)){
+                session.setAttribute("aPersona", usuarioIngresado);
+                if(usuarioIngresado.getTipo().equals("1")){
+                    RequestDispatcher view = request.getRequestDispatcher("home.jsp");
+                    view.forward(request, response);
+                }else{
+                    RequestDispatcher view = request.getRequestDispatcher("homeAdmin.jsp");
+                    view.forward(request, response);
+                }
+            }else{
+                request.setAttribute("error", "password");
+                RequestDispatcher view = request.getRequestDispatcher("logIn.jsp");
+                view.forward(request, response);
+            }
+        }else{
+            request.setAttribute("error", "usuario");
+            RequestDispatcher view = request.getRequestDispatcher("logIn.jsp");
+            view.forward(request, response);
+        }
     }
 
     @Override

@@ -14,17 +14,12 @@
             <th width="120">Numero de la Sala</th>
             <th width="120">Cantidad de Sillas</th>
         </tr>
-        <c:forEach items="${listaSala}" var="pro">
-            <c:if test="${pro.getCantidadSillas() != 0 && pro.getNumeroSala() != 0}">
-                <tr>
-                    <td>${pro.getNumeroSala()}</td>
-                    <td>${pro.getCantidadSillas()}</td>
-                    
-                </tr>
-            </c:if>
+        <c:forEach items="${listaSala}" var="sala">
+            <tr>
+                <td>${sala.getNumeroSala()}</td>
+                <td>${sala.getCantidadSillas()}</td>
+            </tr>
         </c:forEach>
-
-
     </table>
 </c:if>
 <%@include file="footer.jsp" %>

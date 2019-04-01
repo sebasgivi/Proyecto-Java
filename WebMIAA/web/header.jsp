@@ -27,7 +27,7 @@
                     
                     <c:if test="${sessionScope.aPersona != null}">
                         <td style=" width: 20% ; text-align: center">
-                            <h4><a href="./Perfil?Usuario="> ${aPersona.getNombre()} </a></h4>
+                            <h4><a href="./Perfil?Usuario="> ${sessionScope.aPersona.getNombre()} </a></h4>
                         </td>
                     </c:if>
                 </tr>

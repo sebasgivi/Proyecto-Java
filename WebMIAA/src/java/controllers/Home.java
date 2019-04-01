@@ -47,10 +47,9 @@ public class Home extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();
+        Persona.DatosFicticios();
         if (null != session.getAttribute("aPersona")) {
-            Persona aPersona = new Persona();
-            aPersona = (Persona) session.getAttribute("aPersona");
-            request.setAttribute("aPersona", aPersona);
+            Persona aPersona = (Persona) session.getAttribute("aPersona");
             if (aPersona.getTipo().equals("2")) {
                 RequestDispatcher view = request.getRequestDispatcher("homeAdmin.jsp");
                 view.forward(request, response);

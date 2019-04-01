@@ -80,12 +80,26 @@ public class Pelicula {
         this.listaFunciones_.add(funcion);
     }
 
-    public String getSinopsis_() {
+    public String getSinopsis() {
         return sinopsis_;
     }
 
-    public void setSinopsis_(String sinopsis_) {
+    public void setSinopsis(String sinopsis_) {
         this.sinopsis_ = sinopsis_;
     }
 
+    public static String concatenar(Pelicula pelicula,String Hora){
+        String peliculaFuncion = pelicula.getNombre().concat("-");
+        peliculaFuncion = peliculaFuncion.concat(Hora);
+        return peliculaFuncion;
+    }
+    
+    public static Funcion buscarFuncion(Pelicula pelicula,String Hora){
+        for(Funcion funcion: pelicula.getFunciones()){
+            if(funcion.getHoraDeFuncion().equals(Hora)){
+                return funcion;
+            }
+        }
+        return null;
+    }
 }

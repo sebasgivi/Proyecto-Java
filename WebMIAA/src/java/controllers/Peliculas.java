@@ -23,19 +23,9 @@ public class Peliculas extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        HttpSession session = request.getSession();       
-        List<Pelicula> Pelis = new ArrayList<Pelicula>();   
-        if(null != session.getAttribute("Pelis")){
-            Pelis=(ArrayList<Pelicula>) session.getAttribute("Pelis");
-        }
-        if (null != session.getAttribute("aPersona")) {
-            Persona aPersona = new Persona();
-            aPersona = (Persona) session.getAttribute("aPersona");
-            request.setAttribute("aPersona", aPersona);
-        }
+            throws ServletException, IOException {       
+        List<Pelicula> Pelis = Pelicula.pelis;
         request.setAttribute("Pelis", Pelis);
-        session.setAttribute("Pelis", Pelis);
         RequestDispatcher view = request.getRequestDispatcher("peliculas.jsp");
         view.forward(request, response);
     }
@@ -43,20 +33,12 @@ public class Peliculas extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
-        HttpSession session = request.getSession();       
-        List<Pelicula> Pelis = new ArrayList<Pelicula>();  
-   
-        if(null != session.getAttribute("Pelis")){
-            Pelis=(ArrayList<Pelicula>) session.getAttribute("Pelis");
-        }
+        List<Pelicula> Pelis = Pelicula.pelis;
         String name = request.getParameter("name");
         String genero = request.getParameter("genero");
         int edad = Integer.parseInt(request.getParameter("edad"));
         int valoracion = Integer.parseInt(request.getParameter("valoracion")); 
         Pelicula p = new Pelicula(name,genero,edad,valoracion);
-        Pelis.add(p);
-        session.setAttribute("Pelis", Pelis);
         request.setAttribute("Pelis", Pelis);        
         RequestDispatcher view = request.getRequestDispatcher("peliculas.jsp");
         view.forward(request, response);

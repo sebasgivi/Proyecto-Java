@@ -12,5 +12,6 @@
     <tr><th width="120">Usuario/Administrador </th><td>${aPersona.getTipo()}</td></tr>
 
 </table>
-<h1><a href="./PeliculasUsuario">Volver</a></h1>
+<h1><a href="./Home">Volver Al Inicio</a></h1>
+<h1><a href="./CerrarSesion">Cerrar Sesion</a></h1>
 <%@include file="footer.jsp" %>

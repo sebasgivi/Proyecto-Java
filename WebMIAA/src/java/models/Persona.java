@@ -1,4 +1,5 @@
 package models;
+
 import java.util.*;
 
 public class Persona {
@@ -10,18 +11,29 @@ public class Persona {
     private String clave_;
     private String tipo_;
     private static ArrayList<Persona> listaPersonas_ = new ArrayList<>();
-    
+
     public Persona() {
     }
 
-    public Persona(String nombre, String apellido,String correo, int edad, String clave,String tipo) {
-        this.nombre_ = nombre;
-        this.apellido_= apellido;
-        this.correo_ = correo;
-        this.edad_ = edad;
-        this.clave_ = clave;
-        this.tipo_ = tipo;
-        Persona.listaPersonas_.add(this);
+    public Persona(String nombre, String apellido, String correo, int edad, String clave, String tipo) {
+        if (Persona.buscarPorCorreo(correo) == null) {
+            this.nombre_ = nombre;
+            this.apellido_ = apellido;
+            this.correo_ = correo;
+            this.edad_ = edad;
+            this.clave_ = clave;
+            this.tipo_ = tipo;
+            Persona.listaPersonas_.add(this);
+        }
+    }
+
+    public static Persona buscarPorCorreo(String correo) {
+        for (Persona persona : Persona.getListaPersonas()) {
+            if (correo.equals(persona.getCorreo())) {
+                return persona;
+            }
+        }
+        return null;
     }
 
     public String getNombre() {
@@ -47,7 +59,7 @@ public class Persona {
     public void setCorreo(String correo_) {
         this.correo_ = correo_;
     }
-    
+
     public String getTipo() {
         return tipo_;
     }
@@ -55,7 +67,7 @@ public class Persona {
     public void setTipo(String tipo_) {
         this.tipo_ = tipo_;
     }
-    
+
     public int getEdad() {
         return edad_;
     }
@@ -75,16 +87,18 @@ public class Persona {
     public static ArrayList<Persona> getListaPersonas() {
         return listaPersonas_;
     }
-    
-    
-    public static Persona buscarPersona(String Nombre,ArrayList<Persona> lista) {
+
+    public static Persona buscarPersona(String Nombre, ArrayList<Persona> lista) {
         for (Persona p : lista) {
-            if (p.getNombre() == Nombre || p.getCorreo()== Nombre) {
+            if (p.getNombre().equals(Nombre) || p.getCorreo() == Nombre) {
                 return p;
             }
         }
         return null;
     }
-
-    
+    public static void DatosFicticios(){
+        Sala s = new Sala(60,1);
+        Pelicula p1=new Pelicula("see","see",18,18);
+        new Funcion(p1,s,"12","3d");
+    }
 }

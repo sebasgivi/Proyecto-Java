@@ -14,8 +14,7 @@
     </select><br /><br />
     <input type="submit" value="Registrar" />
 </form>
- VEA ${aPersona}
-<c:if test="${aPersona != null}">
+<c:if test="${listaRegistros != null}">
     <table style=" text-align: center">
 
         <tr>
@@ -26,16 +25,16 @@
             <th width="120">clave</th>
             <th width="120">Usuario/Administrador </th>
         </tr>
-        <c:if test="${aPersona.getCorreo() != null}">
+        <c:forEach items="${listaRegistros}" var="persona">
             <tr>
-                <td>${aPersona.getNombre()}</td>
-                <td>${aPersona.getApellido()}</td>
-                <td>${aPersona.getCorreo()}</td>
-                <td>${aPersona.getEdad()}</td>
-                <td>${aPersona.getClave()}</td>
-                <td>${aPersona.getTipo()}</td>
+                <td>${persona.getNombre()}</td>
+                <td>${persona.getApellido()}</td>
+                <td>${persona.getCorreo()}</td>
+                <td>${persona.getEdad()}</td>
+                <td>${persona.getClave()}</td>
+                <td>${persona.getTipo()}</td>
             </tr>
-        </c:if>
+        </c:forEach>
     </table>
 
 </c:if>

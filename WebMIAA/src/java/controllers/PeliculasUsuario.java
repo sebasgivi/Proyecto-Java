@@ -17,6 +17,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import models.Funcion;
+import models.Pelicula;
 
 /**
  *
@@ -25,15 +26,6 @@ import models.Funcion;
 @WebServlet(name = "PeliculasUsuario", urlPatterns = {"/PeliculasUsuario"})
 public class PeliculasUsuario extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -44,13 +36,7 @@ public class PeliculasUsuario extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        HttpSession session = request.getSession();
-        List<Integer> Pelis = new ArrayList<Integer>();
-        if (null != session.getAttribute("Pelis")) {
-            Pelis = (ArrayList<Integer>) session.getAttribute("Pelis");
-        }
-        request.setAttribute("Pelis", Pelis);
-        session.setAttribute("Pelis", Pelis);
+        request.setAttribute("Pelis", Pelicula.pelis);
         RequestDispatcher view = request.getRequestDispatcher("peliculasUsuario.jsp");
         view.forward(request, response);
         

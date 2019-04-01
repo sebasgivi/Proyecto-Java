@@ -6,39 +6,53 @@
 package controllers;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import models.Funcion;
-import models.Pelicula;
+import javax.servlet.http.HttpSession;
+
 /**
  *
- * @author juan pablo cano
+ * @author idea 320
  */
-@WebServlet(name = "VerFuncion", urlPatterns = {"/VerFuncion"})
-public class VerFuncion extends HttpServlet {
+@WebServlet(name = "CerrarSesion", urlPatterns = {"/CerrarSesion"})
+public class CerrarSesion extends HttpServlet {
 
-
+    /**
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+     * methods.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-
+        try (PrintWriter out = response.getWriter()) {
+        }
     }
 
+    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+    /**
+     * Handles the HTTP <code>GET</code> method.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String peliculaHora =  request.getParameter("funcionDePelicula");
-        String[] parts = peliculaHora.split("-");
-        String nombrePelicula = parts[0];
-        String hora = parts[1];
-        Funcion funcion = Pelicula.buscarFuncion(Pelicula.buscarPelicula(nombrePelicula), hora);
-        request.setAttribute("funcion", funcion);
-        request.setAttribute("pelicula", funcion.getPelicula().getNombre());
-        RequestDispatcher view = request.getRequestDispatcher("verFuncion.jsp");
+        HttpSession session = request.getSession();
+        session.setAttribute("aPersona", null);
+        RequestDispatcher view = request.getRequestDispatcher("home.jsp");
         view.forward(request, response);
     }
 
@@ -56,6 +70,11 @@ public class VerFuncion extends HttpServlet {
         processRequest(request, response);
     }
 
+    /**
+     * Returns a short description of the servlet.
+     *
+     * @return a String containing servlet description
+     */
     @Override
     public String getServletInfo() {
         return "Short description";
