@@ -1,6 +1,6 @@
 <%@include file="header.jsp" %>
 <c:if test="${multiArreglo != null}">
-    <form method="POST" action="./Comprar?./Comprar?funcion=${peliculaHora}">
+    <form method="POST" action="./Comprar?funcion=${peliculaHora}">
     <table>
         <c:forEach var="arreglo" items="${multiArreglo}">
             <tr>
@@ -12,7 +12,7 @@
                     </c:if>
                     <c:if test="${sillasDisponibles.indexOf(tiquete.getSilla())>=0}">
                         <td style=" color: black ">
-                            <input type="checkbox" name="sillas" value="${tiquete.getSilla()}">${tiquete.getSilla()}
+                            <input type="checkbox" name="${tiquete.getSilla()}" value="${tiquete.getSilla()}">${tiquete.getSilla()}
                         </td>
                     </c:if>
                 </c:forEach>

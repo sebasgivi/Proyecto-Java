@@ -70,5 +70,13 @@ public class Funcion {
     public String getFormato() {
         return formato_;
     }
-
+    
+    public Tiquete buscarTiquete(int numeroSilla){
+        for(Tiquete tiquete: this.listaTiquetes){
+            if(tiquete.getSilla()==numeroSilla){
+                return tiquete;
+            }
+        }
+        return null;
+    }
 }

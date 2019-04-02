@@ -8,15 +8,15 @@ package controllers;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import models.Funcion;
-import models.Pelicula;
-import models.Tiquete;
+import javax.servlet.http.HttpSession;
+import models.*;
 
 /**
  *
@@ -41,16 +41,7 @@ public class Comprar extends HttpServlet {
            
         }
     }
-
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
+    
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -82,15 +73,24 @@ public class Comprar extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        HttpSession session = request.getSession();
         String peliculaHora =  request.getParameter("funcion");
         String[] parts = peliculaHora.split("-");
         String nombrePelicula = parts[0];
         String hora = parts[1];
         Funcion funcion = Pelicula.buscarFuncion(Pelicula.buscarPelicula(nombrePelicula), hora);
-        ArrayList<ArrayList<Tiquete>> multiArreglo = new ArrayList<>(); 
-        for (int i = 0; i < funcion.getSala().getCantidadSillas(); i++) {
-            if(request.getParameter( "sillas" ) != null){
-                
+        LinkedList<Integer> tiquetesComprados = new LinkedList<>();
+        for (int i = 1; i <= funcion.getSala().getCantidadSillas(); i++) {
+            if(request.getParameter( String.valueOf(i) ) != null){
+                tiquetesComprados.add(Integer.parseInt(request.getParameter( String.valueOf(i) )));
+            }
+        }
+        Persona p = (Persona)session.getAttribute("aPersona");
+        Factura factura =new Factura(p.getNombre().concat(" "+p.getApellido()));
+        for(int numeroSilla: tiquetesComprados){
+            Tiquete tiquete = funcion.buscarTiquete(numeroSilla);
+            if(tiquete != null){
+                factura.agregarTiquete(tiquete);
             }
         }
         RequestDispatcher view = request.getRequestDispatcher("comprar.jsp");

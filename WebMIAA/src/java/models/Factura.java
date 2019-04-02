@@ -19,11 +19,11 @@ public class Factura {
         this.horacompra_ = new java.util.Date();
     }
     
-    public String getComprador_() {
+    public String getComprador() {
         return comprador_;
     }
 
-    public LinkedList<Tiquete> getTiquete_() {
+    public LinkedList<Tiquete> getTiquete() {
         return tiquete_;
     }
 
