@@ -37,8 +37,7 @@ public class Peliculas extends HttpServlet {
         String name = request.getParameter("name");
         String genero = request.getParameter("genero");
         int edad = Integer.parseInt(request.getParameter("edad"));
-        int valoracion = Integer.parseInt(request.getParameter("valoracion")); 
-        Pelicula p = new Pelicula(name,genero,edad,valoracion);
+        Pelicula p = new Pelicula(name,genero,edad);
         request.setAttribute("Pelis", Pelis);        
         RequestDispatcher view = request.getRequestDispatcher("peliculas.jsp");
         view.forward(request, response);

@@ -11,7 +11,12 @@
     </tr>
         <tr>
             <td>${pelicula.getNombre()}</td>
+            <c:if test="${pelicula.getPuntuacion() != 0}">
             <td>${pelicula.getPuntuacion()}</td>
+            </c:if>
+            <c:if test="${pelicula.getPuntuacion() == 0}">
+            <td>Esta Pelicula no tiene votos</td>
+            </c:if>
             <td>
                 <c:if test="${not empty pelicula.getListaFunciones_()}">
                     <td width="160">Funciones Posibles:</td>

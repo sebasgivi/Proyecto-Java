@@ -6,10 +6,8 @@
     Name: <input type="text" name="name" required /><br /><br />
     Genero: <input type="text" name="genero" required/><br /><br />
     Edad: <input type="text" name="edad" required/><br /><br />
-    Valoracion: <input type="text" name="valoracion" required/><br /><br />
     <input type="submit" value="Guardar" />
 </form>
-
 <c:if test="${not empty Pelis}">
     <table style=" text-align: center">
         <tr>
@@ -24,7 +22,12 @@
                     <td>${pro.getNombre()}</td>
                     <td>${pro.getGenero()}</td>
                     <td>${pro.getEdad()}</td>
-                    <td>${pro.getPuntuacion()}</td>
+                    <c:if test="${pelicula.getPuntuacion() != 0}">
+                        <td>${pelicula.getPuntuacion()}</td>
+                    </c:if>
+                    <c:if test="${pelicula.getPuntuacion() == 0}">
+                        <td>Esta Pelicula no tiene votos</td>
+                    </c:if>
                 </tr>
             </c:if>
         </c:forEach>

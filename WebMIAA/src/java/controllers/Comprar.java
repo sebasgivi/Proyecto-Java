@@ -92,13 +92,11 @@ public class Comprar extends HttpServlet {
             Tiquete tiquete = funcion.buscarTiquete(numeroSilla);
             
             if (tiquete != null) {
-                System.out.println(tiquete);
                 factura.agregarTiquete(tiquete);
                 funcion.getSillasDisponibles().remove(funcion.getSillasDisponibles().indexOf(tiquete.getID()));
             }
         }
         request.setAttribute("sillasDisponibles", funcion.getSillasDisponibles());
-        //LinkedList<Integer> tiquetesComprados = (LinkedList<Integer>)request.getAttribute("tiquetesComprados");//
         request.setAttribute("factura",factura);
         session.setAttribute("tiquetesComprados",tiquetesComprados);
         RequestDispatcher view = request.getRequestDispatcher("factura.jsp");

@@ -11,14 +11,15 @@ public class Pelicula {
     private double puntuacion_;
     private ArrayList<Funcion> listaFunciones_ = new ArrayList<>();
     public static ArrayList<Pelicula> pelis = new ArrayList<>();
+    private ArrayList<Integer> votos = new ArrayList<>();
 
-    public Pelicula(String nombre, String genero, int edad, double puntuacion) {
+    public Pelicula(String nombre, String genero, int edad) {
         if (buscarPelicula(nombre) == null) {
             this.nombre_ = nombre;
             this.sinopsis_ = "";
             this.genero_ = genero;
             this.edad_ = edad;
-            this.puntuacion_ = puntuacion;
+            this.puntuacion_ = calcularVotos(votos);
             Pelicula.pelis.add(this);
         }
     }
@@ -60,6 +61,10 @@ public class Pelicula {
         this.edad_ = edad;
     }
 
+    public ArrayList<Integer> getVotos() {
+        return votos;
+    }
+    
     public double getPuntuacion() {
         return this.puntuacion_;
     }
@@ -71,7 +76,7 @@ public class Pelicula {
     public ArrayList<Funcion> getListaFunciones_() {
         return listaFunciones_;
     }
-    
+
     public ArrayList<Funcion> getFunciones() {
         return this.listaFunciones_;
     }
@@ -88,18 +93,33 @@ public class Pelicula {
         this.sinopsis_ = sinopsis_;
     }
 
-    public static String concatenar(Pelicula pelicula,String Hora){
+    public static String concatenar(Pelicula pelicula, String Hora) {
         String peliculaFuncion = pelicula.getNombre().concat("-");
         peliculaFuncion = peliculaFuncion.concat(Hora);
         return peliculaFuncion;
     }
-    
-    public static Funcion buscarFuncion(Pelicula pelicula,String Hora){
-        for(Funcion funcion: pelicula.getFunciones()){
-            if(funcion.getHoraDeFuncion().equals(Hora)){
+
+    public static Funcion buscarFuncion(Pelicula pelicula, String Hora) {
+        for (Funcion funcion : pelicula.getFunciones()) {
+            if (funcion.getHoraDeFuncion().equals(Hora)) {
                 return funcion;
             }
         }
         return null;
+    }
+
+    public int calcularVotos(ArrayList<Integer> votos) {
+        if (votos.isEmpty()) {
+            return 0;
+        } else {
+            int suma = 0;
+            int cont = 0;
+            for (int voto : votos) {
+                suma = suma + voto;
+                cont = cont + 1;
+            }
+            int prom = suma / cont;
+            return prom;
+        }
     }
 }

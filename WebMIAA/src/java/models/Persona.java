@@ -98,7 +98,7 @@ public class Persona {
     }
     public static void DatosFicticios(){
         Sala s = new Sala(20,1);
-        Pelicula p1=new Pelicula("see","see",18,18);
+        Pelicula p1=new Pelicula("see","see",18);
         new Funcion(p1,s,"12","3D");
         new Persona("Danny","Puto","milos@hot.com",18,"asd","Administrador");
         new Persona("Danny","Puto","u@hot.com",18,"asd","Usuario");
