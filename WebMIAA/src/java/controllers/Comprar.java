@@ -38,65 +38,73 @@ public class Comprar extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-           
+
         }
     }
-    
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-    
-        String peliculaHora =  request.getParameter("funcion");
+
+        String peliculaHora = request.getParameter("funcion");
         String[] parts = peliculaHora.split("-");
         String nombrePelicula = parts[0];
         String hora = parts[1];
         Funcion funcion = Pelicula.buscarFuncion(Pelicula.buscarPelicula(nombrePelicula), hora);
-        
-        ArrayList<ArrayList<Tiquete>> multiArreglo = new ArrayList<>(); 
-        int size = funcion.getListaTiquetes().size()/10;
-        for (int i=0;i<size;i++){
+        ArrayList<ArrayList<Tiquete>> multiArreglo = new ArrayList<>();
+        int size = funcion.getListaTiquetes().size() / 10;
+        for (int i = 0; i < size; i++) {
             multiArreglo.add(new ArrayList<Tiquete>());
         }
-        for (int i=0;i<size;i++){
+        for (int i = 0; i < size; i++) {
             for (int j = 0; j < 10; j++) {
-                Tiquete tiquete = (Tiquete) funcion.getListaTiquetes().get(j + i*10);
+                Tiquete tiquete = (Tiquete) funcion.getListaTiquetes().get(j + i * 10);
                 multiArreglo.get(i).add(tiquete);
             }
         }
-        request.setAttribute("multiArreglo",multiArreglo);
-        request.setAttribute("peliculaHora",peliculaHora);
-        funcion.getSillasDisponibles().remove(5);
-        request.setAttribute("sillasDisponibles",funcion.getSillasDisponibles());
+        request.setAttribute("multiArreglo", multiArreglo);
+        request.setAttribute("peliculaHora", peliculaHora);
+        request.setAttribute("sillasDisponibles", funcion.getSillasDisponibles());
         RequestDispatcher view = request.getRequestDispatcher("comprar.jsp");
         view.forward(request, response);
-    }    
+    }
+
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();
-        String peliculaHora =  request.getParameter("funcion");
+        String peliculaHora = request.getParameter("funcion");
         String[] parts = peliculaHora.split("-");
         String nombrePelicula = parts[0];
         String hora = parts[1];
         Funcion funcion = Pelicula.buscarFuncion(Pelicula.buscarPelicula(nombrePelicula), hora);
         LinkedList<Integer> tiquetesComprados = new LinkedList<>();
         for (int i = 1; i <= funcion.getSala().getCantidadSillas(); i++) {
-            if(request.getParameter( String.valueOf(i) ) != null){
-                tiquetesComprados.add(Integer.parseInt(request.getParameter( String.valueOf(i) )));
+            if (request.getParameter(String.valueOf(i)) != null) {
+                tiquetesComprados.add(Integer.parseInt(request.getParameter(String.valueOf(i))));
+                
             }
         }
-        Persona p = (Persona)session.getAttribute("aPersona");
-        Factura factura =new Factura(p.getNombre().concat(" "+p.getApellido()));
-        for(int numeroSilla: tiquetesComprados){
+        Persona p = (Persona) session.getAttribute("aPersona");
+        Factura factura = new Factura(p.getNombre().concat(" " + p.getApellido()));
+        
+        for (int numeroSilla : tiquetesComprados) {
             Tiquete tiquete = funcion.buscarTiquete(numeroSilla);
-            if(tiquete != null){
+            
+            if (tiquete != null) {
+                System.out.println(tiquete);
                 factura.agregarTiquete(tiquete);
+                funcion.getSillasDisponibles().remove(funcion.getSillasDisponibles().indexOf(tiquete.getID()));
             }
         }
-        RequestDispatcher view = request.getRequestDispatcher("comprar.jsp");
+        request.setAttribute("sillasDisponibles", funcion.getSillasDisponibles());
+        //LinkedList<Integer> tiquetesComprados = (LinkedList<Integer>)request.getAttribute("tiquetesComprados");//
+        request.setAttribute("factura",factura);
+        session.setAttribute("tiquetesComprados",tiquetesComprados);
+        RequestDispatcher view = request.getRequestDispatcher("factura.jsp");
         view.forward(request, response);
     }
-    
+
     @Override
     public String getServletInfo() {
         return "Short description";

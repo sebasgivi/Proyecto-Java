@@ -1,5 +1,6 @@
 <%@include file="header.jsp" %>
 <c:if test="${multiArreglo != null}">
+        Seleccione los asientos que desee comprar para ver la funcion:
     <form method="POST" action="./Comprar?funcion=${peliculaHora}">
     <table>
         <c:forEach var="arreglo" items="${multiArreglo}">
@@ -21,9 +22,6 @@
     </table>
         <input type="submit" value="Reservar"/>
     </form>
-</c:if>
-<c:if test="${multiArreglo == null}">
-    Seleccione los asientos que desee comprar para ver la funcion:
 </c:if>
 
 <%@include file="footer.jsp" %>

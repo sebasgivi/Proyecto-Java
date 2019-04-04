@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import models.Funcion;
 import models.Pelicula;
+import java.util.*;
 /**
  *
  * @author juan pablo cano
@@ -38,7 +39,6 @@ public class VerFuncion extends HttpServlet {
         Funcion funcion = Pelicula.buscarFuncion(Pelicula.buscarPelicula(nombrePelicula), hora);
         request.setAttribute("funcion", funcion);
         request.setAttribute("pelicula", funcion.getPelicula().getNombre());
-        
         RequestDispatcher view = request.getRequestDispatcher("verFuncion.jsp");
         view.forward(request, response);
     }

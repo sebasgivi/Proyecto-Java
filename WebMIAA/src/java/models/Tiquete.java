@@ -2,7 +2,7 @@
 package models;
 
 public class Tiquete {
-    private static int contadorID = 0;
+    private static int contadorID = 1;
     private Funcion funcion_;
     private Factura factura_;
     private int silla_;
@@ -17,11 +17,11 @@ public class Tiquete {
         this.precio_ = precio;
     }
 
-    public Funcion getFuncion_() {
+    public Funcion getFuncion() {
         return funcion_;
     }
 
-    public Factura getFactura_() {
+    public Factura getFactura() {
         return factura_;
     }
 
@@ -29,11 +29,11 @@ public class Tiquete {
         return silla_;
     }
 
-    public int getID_() {
+    public int getID() {
         return ID_;
     }
 
-    public int getPrecio_() {
+    public int getPrecio() {
         return precio_;
     }
 
