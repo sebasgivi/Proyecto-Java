@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import models.Factura;
+import models.Pelicula;
 import models.Persona;
 
 /**
@@ -55,10 +56,20 @@ public class Datos extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();
-        Persona MayorD = (Persona)session.getAttribute("MayorD");
-        Factura factura =(Factura)session.getAttribute("factura");
+        int AsisMaxima = 0;
+        Pelicula PAsisMaxima = null;
+        for (Pelicula peli : Pelicula.pelis) {
+            if (AsisMaxima < peli.aumentarAsistencia(peli)) {
+                AsisMaxima = peli.aumentarAsistencia(peli);
+                PAsisMaxima = peli;
+            }
+        }
+        session.setAttribute("AsisMaxima", AsisMaxima);
+        session.setAttribute("PAsisMaxima", PAsisMaxima);
+        Persona MayorD = (Persona) session.getAttribute("MayorD");
+        Factura factura = (Factura) session.getAttribute("factura");
         RequestDispatcher view = request.getRequestDispatcher("datos.jsp");
-                view.forward(request, response);
+        view.forward(request, response);
 
     }
 

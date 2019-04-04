@@ -9,6 +9,7 @@ public class Pelicula {
     private int edad_;
     private String sinopsis_;
     private double puntuacion_;
+    private int asistencia_;
     private ArrayList<Funcion> listaFunciones_ = new ArrayList<>();
     public static ArrayList<Pelicula> pelis = new ArrayList<>();
     private ArrayList<Integer> votos = new ArrayList<>();
@@ -21,6 +22,7 @@ public class Pelicula {
             this.edad_ = edad;
             this.puntuacion_ = getPuntuacion();
             Pelicula.pelis.add(this);
+            this.asistencia_ = 0;
         }
     }
 
@@ -91,6 +93,23 @@ public class Pelicula {
 
     public void setSinopsis(String sinopsis_) {
         this.sinopsis_ = sinopsis_;
+    }
+
+    public int getAsistencia() {
+        return asistencia_;
+    }
+
+    public void setAsistencia(int asistencia_) {
+        this.asistencia_ = asistencia_;
+    }
+
+    public int aumentarAsistencia(Pelicula pelicula) {
+        int asistencia = 0;
+        for (Funcion funcion : pelicula.getFunciones()) {
+            asistencia = funcion.getListaTiquetes().size()- funcion.getSillasDisponibles().size();    
+        }
+        setAsistencia(asistencia);
+        return asistencia;
     }
 
     public static String concatenar(Pelicula pelicula, String Hora) {

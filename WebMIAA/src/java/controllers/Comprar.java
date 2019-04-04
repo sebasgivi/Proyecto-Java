@@ -93,7 +93,7 @@ public class Comprar extends HttpServlet {
 
             if (tiquete != null) {
                 factura.agregarTiquete(tiquete);
-                funcion.getSillasDisponibles().remove(funcion.getSillasDisponibles().indexOf(tiquete.getID()));
+                funcion.getSillasDisponibles().remove(funcion.getSillasDisponibles().indexOf(tiquete.getSilla()));
             }
         }
         p.compraRealizada(factura.getPrecio());

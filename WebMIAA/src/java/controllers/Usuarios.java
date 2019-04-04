@@ -8,7 +8,6 @@ package controllers;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
-import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -22,8 +21,8 @@ import models.Persona;
  *
  * @author juan pablo cano
  */
-@WebServlet(name = "Personas", urlPatterns = {"/Personas"})
-public class Personas extends HttpServlet {
+@WebServlet(name = "Usuarios", urlPatterns = {"/Usuarios"})
+public class Usuarios extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -38,7 +37,7 @@ public class Personas extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-
+            
         }
     }
 
@@ -54,26 +53,24 @@ public class Personas extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.setAttribute("listaRegistros", Persona.getListaPersonas());
-        RequestDispatcher view = request.getRequestDispatcher("registropersonas.jsp");
+        HttpSession session = request.getSession();
+        ArrayList<Personas> listaRegistros = (ArrayList<Personas>)session.getAttribute("listaRegistros");
+        RequestDispatcher view = request.getRequestDispatcher("usuarios.jsp");
         view.forward(request, response);
     }
 
+    /**
+     * Handles the HTTP <code>POST</code> method.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        HttpSession session = request.getSession();
-        String nombre = request.getParameter("nombre");
-        String apellido = request.getParameter("apellido");
-        String correo = request.getParameter("correo");
-        String clave = request.getParameter("clave");
-        int edad = Integer.parseInt(request.getParameter("edad"));
-        String AoU = request.getParameter("Admin/Usuario");
-        Persona p = new Persona(nombre, apellido, correo, clave, edad, AoU);
-        request.setAttribute("listaRegistros", Persona.getListaPersonas());
-        session.setAttribute("listaRegistros", Persona.getListaPersonas());
-        RequestDispatcher view = request.getRequestDispatcher("registropersonas.jsp");
-        view.forward(request, response);
+        processRequest(request, response);
     }
 
     /**

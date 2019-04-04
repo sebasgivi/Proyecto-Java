@@ -4,7 +4,17 @@
 
 <form method="POST" action="./Peliculas">
     Name: <input type="text" name="name" required /><br /><br />
-    Genero: <input type="text" name="genero" required/><br /><br />
+    Genero:
+    <select name="genero">
+        <option value="Accion">Accion</option> 
+        <option value="Aventura">Aventura</option>    
+        <option value="CienciaFiccion">Ciencia Ficcion</option>
+        <option value="Drama">Drama</option>
+        <option value="Romance">Romance</option>
+        <option value="SuperHeroes">Super Heroes</option>
+        <option value="Suspenso">Suspenso</option>  
+        <option value="Terror">Terror</option>
+    </select><br /><br />
     Edad: <input type="text" name="edad" required/><br /><br />
     <input type="submit" value="Guardar" />
 </form>
