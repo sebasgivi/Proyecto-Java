@@ -6,8 +6,8 @@
     Nombre: <input type="text" name="nombre" required /><br /><br />
     Apellido: <input type="text" name="apellido" required /><br /><br />
     Correo: <input type="email" name="correo" required /><br /><br />
-    Edad: <input type="text" name="edad" required /><br /><br />
     clave: <input type="password" name="clave" required/><br /><br />
+    Edad: <input type="text" name="edad" required /><br /><br />
     tipo provicional: <select name="Admin/Usuario">
         <option value="Usuario">Usuario</option> 
         <option value="Administrador">Administrador</option> 
@@ -21,8 +21,8 @@
             <th width="120">Nombre</th>
             <th width="120">Apellido</th>
             <th width="120">correo:</th>
-            <th width="120">Edad</th>
             <th width="120">clave</th>
+            <th width="120">Edad</th>
             <th width="120">Usuario/Administrador </th>
         </tr>
         <c:forEach items="${listaRegistros}" var="persona">
@@ -30,8 +30,8 @@
                 <td>${persona.getNombre()}</td>
                 <td>${persona.getApellido()}</td>
                 <td>${persona.getCorreo()}</td>
-                <td>${persona.getEdad()}</td>
                 <td>${persona.getClave()}</td>
+                <td>${persona.getEdad()}</td>
                 <td>${persona.getTipo()}</td>
             </tr>
         </c:forEach>

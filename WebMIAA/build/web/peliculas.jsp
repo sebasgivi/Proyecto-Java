@@ -14,7 +14,6 @@
             <th width="120">Name</th>
             <th width="120">Genero</th>
             <th width="120">Edad</th>
-            <th width="120">Valoracion</th>
         </tr>
         <c:forEach items="${Pelis}" var="pro">
             <c:if test="${pro.getNombre() != null}">
@@ -22,12 +21,6 @@
                     <td>${pro.getNombre()}</td>
                     <td>${pro.getGenero()}</td>
                     <td>${pro.getEdad()}</td>
-                    <c:if test="${pelicula.getPuntuacion() != 0}">
-                        <td>${pelicula.getPuntuacion()}</td>
-                    </c:if>
-                    <c:if test="${pelicula.getPuntuacion() == 0}">
-                        <td>Esta Pelicula no tiene votos</td>
-                    </c:if>
                 </tr>
             </c:if>
         </c:forEach>

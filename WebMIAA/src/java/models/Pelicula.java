@@ -19,7 +19,7 @@ public class Pelicula {
             this.sinopsis_ = "";
             this.genero_ = genero;
             this.edad_ = edad;
-            this.puntuacion_ = calcularVotos(votos);
+            this.puntuacion_ = getPuntuacion();
             Pelicula.pelis.add(this);
         }
     }
@@ -64,13 +64,13 @@ public class Pelicula {
     public ArrayList<Integer> getVotos() {
         return votos;
     }
-    
+
     public double getPuntuacion() {
-        return this.puntuacion_;
+        return puntuacion_;
     }
 
-    public void setPuntuacion(Float puntuacion) {
-        this.puntuacion_ = puntuacion;
+    public void setPuntuacion(double puntuacion_) {
+        this.puntuacion_ = puntuacion_;
     }
 
     public ArrayList<Funcion> getListaFunciones_() {
@@ -108,8 +108,8 @@ public class Pelicula {
         return null;
     }
 
-    public int calcularVotos(ArrayList<Integer> votos) {
-        if (votos.isEmpty()) {
+    public double calcularVotos(ArrayList<Integer> votos) {
+        if (votos.isEmpty() == true) {
             return 0;
         } else {
             int suma = 0;
@@ -118,8 +118,8 @@ public class Pelicula {
                 suma = suma + voto;
                 cont = cont + 1;
             }
-            int prom = suma / cont;
-            return prom;
+            double puntuacion_ = suma / cont;
+            return puntuacion_;
         }
     }
 }

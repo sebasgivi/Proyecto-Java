@@ -8,7 +8,7 @@
     <tr>
         <td>${pelicula.getNombre()}</td>
         <td>
-            <form method="POST" action="./VotarPeliculax">
+            <form method="POST" action="./VotarPeliculax?pelicula=${pelicula.getNombre()}">
                 <select name="voto">
                     <option value="1">1</option>
                     <option value="2">2</option> 

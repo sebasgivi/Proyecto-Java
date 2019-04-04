@@ -23,11 +23,11 @@ public class Salas extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        int numSillas = Integer.parseInt(request.getParameter("numSillas"));
         int numSala = Integer.parseInt(request.getParameter("numSala"));
+        int numSillas = Integer.parseInt(request.getParameter("numSillas"));
         String p = null;
         if (Sala.buscarSala(numSala) == null){
-            new Sala(numSillas, numSala);
+            new Sala(numSala,numSillas );
         } else{
             p = "existe";
         }

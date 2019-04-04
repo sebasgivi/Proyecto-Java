@@ -72,10 +72,11 @@ public class VotarPeliculax extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        ArrayList<Integer> votos = (ArrayList<Integer>) request.getAttribute("votospelicula");
+        Pelicula pelicula = Pelicula.buscarPelicula(request.getParameter("pelicula"));
         int voto = Integer.parseInt(request.getParameter("voto"));
-        votos.add(voto);
-        request.setAttribute("votospelicula", votos);
+        pelicula.getVotos().add(voto);
+        pelicula.setPuntuacion(pelicula.calcularVotos(pelicula.getVotos()));
+        request.setAttribute("pelicula", pelicula);
         RequestDispatcher view = request.getRequestDispatcher("home.jsp");
         view.forward(request, response);
 

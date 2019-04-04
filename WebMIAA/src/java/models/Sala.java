@@ -8,8 +8,8 @@ public class Sala {
     private int numeroSala_;
     public LinkedList<Funcion> funcionesDisponibles_ = new LinkedList<Funcion>();
     public static ArrayList<Sala> listaSala = new ArrayList<>();
-    
-    public Sala(int cantidadSillas, int numeroSala) {
+
+    public Sala(int numeroSala, int cantidadSillas) {
         if (Sala.buscarSala(numeroSala) == null) {
             this.cantidadSillas_ = cantidadSillas;
             this.numeroSala_ = numeroSala;

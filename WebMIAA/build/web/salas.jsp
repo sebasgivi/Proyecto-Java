@@ -3,8 +3,15 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <form method="POST" action="./Salas">
-    Cantidad  de Sillas: <input type="text" name="numSillas" required /><br /><br />
     Numero de la Sala: <input type="text" name="numSala" required /><br /><br />
+    Cantidad  de Sillas:
+    <select name="numSillas">
+        <option value="10">10</option> 
+        <option value="20">20</option> 
+        <option value="30">30</option> 
+        <option value="40">40</option> 
+        <option value="50">50</option>    
+    </select><br /><br />
     <input type="submit" value="Crear Sala" />
 </form>
 <c:set var="var" value="existe"/>  

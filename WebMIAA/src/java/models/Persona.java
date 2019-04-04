@@ -3,7 +3,7 @@ package models;
 import java.util.*;
 
 public class Persona {
-
+    static int mayorDinero;
     private String nombre_;
     private String apellido_;
     private String correo_;
@@ -11,11 +11,11 @@ public class Persona {
     private String clave_;
     private String tipo_;
     private static ArrayList<Persona> listaPersonas_ = new ArrayList<>();
-
+    private int dineroUtilizado_;
     public Persona() {
     }
 
-    public Persona(String nombre, String apellido, String correo, int edad, String clave, String tipo) {
+    public Persona(String nombre, String apellido, String correo, String clave, int edad, String tipo) {
         if (Persona.buscarPorCorreo(correo) == null) {
             this.nombre_ = nombre;
             this.apellido_ = apellido;
@@ -23,6 +23,7 @@ public class Persona {
             this.edad_ = edad;
             this.clave_ = clave;
             this.tipo_ = tipo;
+            this.dineroUtilizado_ = 0;
             Persona.listaPersonas_.add(this);
         }
     }
@@ -35,7 +36,11 @@ public class Persona {
         }
         return null;
     }
-
+    
+    public int compraRealizada(int gasto){
+        dineroUtilizado_ = dineroUtilizado_+gasto;
+        return dineroUtilizado_;
+    }
     public String getNombre() {
         return nombre_;
     }
@@ -44,6 +49,15 @@ public class Persona {
         this.nombre_ = nombre_;
     }
 
+    public int getDineroUtilizado() {
+        return dineroUtilizado_;
+    }
+
+    public void setDineroUtilizado(int dineroGastado_) {
+        this.dineroUtilizado_ = dineroGastado_;
+    }
+    
+    
     public String getApellido() {
         return apellido_;
     }
@@ -97,11 +111,18 @@ public class Persona {
         return null;
     }
     public static void DatosFicticios(){
-        Sala s = new Sala(20,1);
+        Sala s = new Sala(1,20);
         Pelicula p1=new Pelicula("see","see",18);
         new Funcion(p1,s,"12","3D");
-        new Persona("Danny","Puto","milos@hot.com",18,"asd","Administrador");
-        new Persona("Danny","Puto","u@hot.com",18,"asd","Usuario");
+        new Persona("Danny","Puto","milos@hot.com","asd",18,"Administrador");
+        new Persona("Danny","Puto","u@hot.com","asd",18,"Usuario");
         
+    }
+    public static Persona mayorDinero(Persona p){
+        if (p.dineroUtilizado_ > Persona.mayorDinero){
+            Persona.mayorDinero = p.dineroUtilizado_;
+            return p;
+        }
+        return null;
     }
 }

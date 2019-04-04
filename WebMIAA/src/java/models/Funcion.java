@@ -54,8 +54,10 @@ public class Funcion {
             if (this.formato_.equals("2D")) {
                 this.listaTiquetes.add(new Tiquete(this, i + 1,4000));
             }
-            else{
+            else if(this.formato_.equals("3D")){
                 this.listaTiquetes.add(new Tiquete(this, i + 1,6000));
+            }else{
+                this.listaTiquetes.add(new Tiquete(this, i + 1,10000));
             }
         }
         for (int i = 0; i < this.sala_.getCantidadSillas(); i++) {

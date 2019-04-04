@@ -65,10 +65,10 @@ public class Personas extends HttpServlet {
         String nombre = request.getParameter("nombre");
         String apellido = request.getParameter("apellido");
         String correo = request.getParameter("correo");
-        int edad = Integer.parseInt(request.getParameter("edad"));
         String clave = request.getParameter("clave");
+        int edad = Integer.parseInt(request.getParameter("edad"));
         String AoU = request.getParameter("Admin/Usuario");
-        Persona p = new Persona(nombre, apellido, correo, edad, clave, AoU);
+        Persona p = new Persona(nombre, apellido, correo, clave, edad, AoU);
         request.setAttribute("listaRegistros", Persona.getListaPersonas());
         RequestDispatcher view = request.getRequestDispatcher("registropersonas.jsp");
         view.forward(request, response);

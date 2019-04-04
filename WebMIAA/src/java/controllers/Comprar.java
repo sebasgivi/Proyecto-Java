@@ -82,23 +82,29 @@ public class Comprar extends HttpServlet {
         for (int i = 1; i <= funcion.getSala().getCantidadSillas(); i++) {
             if (request.getParameter(String.valueOf(i)) != null) {
                 tiquetesComprados.add(Integer.parseInt(request.getParameter(String.valueOf(i))));
-                
+
             }
         }
         Persona p = (Persona) session.getAttribute("aPersona");
+
         Factura factura = new Factura(p.getNombre().concat(" " + p.getApellido()));
-        
         for (int numeroSilla : tiquetesComprados) {
             Tiquete tiquete = funcion.buscarTiquete(numeroSilla);
-            
+
             if (tiquete != null) {
                 factura.agregarTiquete(tiquete);
                 funcion.getSillasDisponibles().remove(funcion.getSillasDisponibles().indexOf(tiquete.getID()));
             }
         }
+        p.compraRealizada(factura.getPrecio());
+        Persona MayorD = p.mayorDinero(p);
         request.setAttribute("sillasDisponibles", funcion.getSillasDisponibles());
-        request.setAttribute("factura",factura);
-        session.setAttribute("tiquetesComprados",tiquetesComprados);
+        request.setAttribute("factura", factura);
+        session.setAttribute("factura", factura);
+        if (MayorD != null) {
+            session.setAttribute("MayorD", MayorD);
+        }
+        session.setAttribute("tiquetesComprados", tiquetesComprados);
         RequestDispatcher view = request.getRequestDispatcher("factura.jsp");
         view.forward(request, response);
     }
