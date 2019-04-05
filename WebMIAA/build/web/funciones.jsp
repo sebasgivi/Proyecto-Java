@@ -7,7 +7,7 @@
     Numero de la Sala: <input type="text" name="numSala" required/><br /><br />
     Hora de la Funcion: <input type="text" name="horaDeFuncion" required /><br /><br />
     Formato:
-    <select name="formato">
+    <select name="formato" required>
         <option value="2D">2D</option> 
         <option value="3D">3D</option> 
         <option value="4D">4D</option>   

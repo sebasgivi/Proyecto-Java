@@ -30,15 +30,15 @@ public class Funciones extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
+        HttpSession session = request.getSession();
         Pelicula pelicula = Pelicula.buscarPelicula(request.getParameter("pelicula"));
         Sala sala = Sala.buscarSala(Integer.parseInt(request.getParameter("numSala")));
         String horaDeFuncion = request.getParameter("horaDeFuncion");
         String formato = request.getParameter("formato");
         Funcion p = new Funcion(pelicula, sala, horaDeFuncion, formato);
         request.setAttribute("funciones_", Funcion.getFunciones());
+        session.getAttribute("Pelis");
         RequestDispatcher view = request.getRequestDispatcher("funciones.jsp");
-
         view.forward(request, response);
     }
 }

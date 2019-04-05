@@ -57,13 +57,42 @@ public class Datos extends HttpServlet {
             throws ServletException, IOException {
         HttpSession session = request.getSession();
         int AsisMaxima = 0;
+        int AsisMinima = 100;
         Pelicula PAsisMaxima = null;
+        Pelicula PAsisMinima = null;
         for (Pelicula peli : Pelicula.pelis) {
             if (AsisMaxima < peli.aumentarAsistencia(peli)) {
                 AsisMaxima = peli.aumentarAsistencia(peli);
                 PAsisMaxima = peli;
             }
+            if(AsisMinima > peli.aumentarAsistencia(peli)){
+                AsisMinima = peli.aumentarAsistencia(peli);
+                PAsisMinima = peli;
+            }
+                
+            
         }
+        Pelicula pelicula = Pelicula.buscarPelicula(request.getParameter("pelicula"));
+        double valMaxima = 0;
+        double valMinima = 100;
+        Pelicula PVMaxima = null;
+        Pelicula PVMinima = null;
+        for (Pelicula peli : Pelicula.pelis) {
+            if (valMaxima < peli.getPuntuacion()) {
+                valMaxima =  peli.getPuntuacion();
+                PVMaxima = peli;
+            }
+            if(valMinima > peli.getPuntuacion()){
+                valMinima = peli.getPuntuacion();
+                PVMinima = peli;
+            }
+        }
+        session.setAttribute("valMinima",valMinima);
+        session.setAttribute("PVMaxima",PVMaxima);
+        session.setAttribute("valMaxima",valMaxima);
+        session.setAttribute("PVMinima",PVMinima);
+        session.setAttribute("AsisMinima", AsisMaxima);
+        session.setAttribute("PAsisMinima", PAsisMaxima);
         session.setAttribute("AsisMaxima", AsisMaxima);
         session.setAttribute("PAsisMaxima", PAsisMaxima);
         Persona MayorD = (Persona) session.getAttribute("MayorD");
