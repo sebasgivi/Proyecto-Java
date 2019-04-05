@@ -13,7 +13,7 @@
             <td><a>${funcion.getPelicula().getNombre()}</a></td>
             <td><a>${funcion.getSala().getNumeroSala()}</a></td>
             <td><a>${funcion.getHoraDeFuncion()}</a></td>
-            <td><a>${funcion.getSillasDisponibles()}</a></td>
+            <td><a>${funcion.getSillasDisponibles().size()}</a></td>
             <td><a>${funcion.getFormato()}</a></td>
             <c:if test="${sessionScope.aPersona  != null}">
                 <td  style=" width: 15% ; text-align: center">

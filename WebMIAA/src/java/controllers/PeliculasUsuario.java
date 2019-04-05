@@ -32,23 +32,75 @@ public class PeliculasUsuario extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
         }
     }
-    
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         request.setAttribute("Pelis", Pelicula.pelis);
         RequestDispatcher view = request.getRequestDispatcher("peliculasUsuario.jsp");
         view.forward(request, response);
-        
-        
+
     }
-    
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        String nombre = request.getParameter("pelibuscada");
+        String edad = request.getParameter("edad");
+        String genero = request.getParameter("genero");
+        ArrayList<Pelicula> peli = new ArrayList<>();
+        Pelicula pelicula = Pelicula.buscarPelicula(nombre);
+        if (pelicula != null) {
+            if (!genero.equals("Todos")) {
+                if (!edad.equals("")) {
+                    if (pelicula.getGenero().equals(genero) && pelicula.getEdad() == Integer.parseInt(edad)) {
+                        peli.add(pelicula);
+                    }
+                } else {
+                    if (pelicula.getGenero().equals(genero)) {
+                        peli.add(pelicula);
+                    }
+                }
+            } else {
+                if (!edad.equals("")) {
+                    if (pelicula.getEdad() == Integer.parseInt(edad)) {
+                        peli.add(pelicula);
+                    }
+                } else {
+                    peli.add(pelicula);
+                }
+            }
+        } else if (nombre.equals("")) {
+            if (!genero.equals("Todos")) {
+                if (!edad.equals("")) {
+                    for (Pelicula peliculaAux : Pelicula.pelis) {
+                        if (peliculaAux.getEdad() == Integer.parseInt(edad) && peliculaAux.getGenero().equals(genero)) {
+                            peli.add(peliculaAux);
+                        }
+                    }
+                } else {
+                    for (Pelicula peliculaAux : Pelicula.pelis) {
+                        if (peliculaAux.getGenero().equals(genero)) {
+                            peli.add(peliculaAux);
+                        }
+                    }
+                }
+            } else {
+                if (!edad.equals("")) {
+                    for (Pelicula peliculaAux : Pelicula.pelis) {
+                        if (peliculaAux.getEdad() == Integer.parseInt(edad)) {
+                            peli.add(peliculaAux);
+                        }
+                    }
+                } else {
+                    peli = Pelicula.pelis;
+                }
+            }
+        }
+        request.setAttribute("Pelis", peli);
+        RequestDispatcher view = request.getRequestDispatcher("peliculasUsuario.jsp");
+        view.forward(request, response);
 
-        
     }
 
     /**

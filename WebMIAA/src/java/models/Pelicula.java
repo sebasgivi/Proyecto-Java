@@ -131,9 +131,9 @@ public class Pelicula {
         if (votos.isEmpty() == true) {
             return 0;
         } else {
-            int suma = 0;
-            int cont = 0;
-            for (int voto : votos) {
+            double suma = 0;
+            double cont = 0;
+            for (double voto : votos) {
                 suma = suma + voto;
                 cont = cont + 1;
             }

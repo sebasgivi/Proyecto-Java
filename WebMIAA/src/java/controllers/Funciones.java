@@ -35,7 +35,18 @@ public class Funciones extends HttpServlet {
         Sala sala = Sala.buscarSala(Integer.parseInt(request.getParameter("numSala")));
         String horaDeFuncion = request.getParameter("horaDeFuncion");
         String formato = request.getParameter("formato");
-        Funcion p = new Funcion(pelicula, sala, horaDeFuncion, formato);
+        if(pelicula != null){
+            int aux = 0;
+            for(Funcion funcion: pelicula.getFunciones()){
+                if(funcion.getHoraDeFuncion().equals(horaDeFuncion)){
+                    aux=1;
+                }
+            }
+            if(aux == 0){
+                Funcion p = new Funcion(pelicula, sala, horaDeFuncion, formato);
+            }
+        }
+        
         request.setAttribute("funciones_", Funcion.getFunciones());
         session.getAttribute("Pelis");
         RequestDispatcher view = request.getRequestDispatcher("funciones.jsp");
